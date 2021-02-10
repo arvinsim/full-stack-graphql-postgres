@@ -19,7 +19,8 @@
   "homepage": "https://github.com/arvinsim/full-stack-graphql-postgres#readme",
   "dependencies": {
     "apollo-server": "^2.20.0",
-    "graphql": "^15.5.0"
+    "graphql": "^15.5.0",
+    "pg": "^8.5.1"
   },
   "devDependencies": {
     "prettier": "^2.2.1"

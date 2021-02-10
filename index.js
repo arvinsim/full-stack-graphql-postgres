@@ -1,26 +1,14 @@
-const { ApolloServer, gql } = require("apollo-server");
+const { ApolloServer } = require("apollo-server");
+const { Pool } = require("pg");
+const typeDefs = require("./schema");
 
-// A schema is a collection of type definitions (hence "typeDefs")
-// that together define the "shape" of queries that are executed against
-// your data.
-const typeDefs = gql`
-  type Score {
-    id: ID!
-    score: Int
-    playerId: Int
-    dateCreated: Int
-  }
-
-  type Player {
-    id: ID!
-    name: String
-    scores: [Score]
-  }
-
-  type Query {
-    players: [Player]
-  }
-`;
+const pool = new Pool({
+  user: "docker",
+  host: "localhost",
+  database: "docker",
+  password: "docker",
+  port: 5432,
+});
 
 const players = [
   {
