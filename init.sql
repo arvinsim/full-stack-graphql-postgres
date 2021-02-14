@@ -1,7 +1,4 @@
-SELECT DATABASE "postgres"
-
-# Creating Tables
-START TRANSACTION;
+-- Creating Tables
 DROP TABLE IF EXISTS players;
 CREATE TABLE players
 (
@@ -23,34 +20,15 @@ CREATE TABLE scores
             references players,
     date_created timestamp
 );
-END TRANSACTION;
 
-# Insert data
-START TRANSACTION;
-INSERT INTO players(name)
-VALUES ("John")
-RETURNING id  AS p_id;
+-- Insert data
+INSERT INTO players(name) VALUES ('John') RETURNING id;
+INSERT INTO scores(score, player_id, date_created) VALUES (111, id, 1607751459);
+INSERT INTO scores(score, player_id, date_created) VALUES (122, id, 1607837857);
+INSERT INTO scores(score, player_id, date_created) VALUES (133, id, 1607924257);
 
-INSERT INTO scores(score, player_id, date_created)
-VALUES (111, p_id,1607751459)
-
-INSERT INTO scores(score, player_id, date_created)
-VALUES (122, p_id,1607837857)
-
-INSERT INTO scores(score, player_id, date_created)
-VALUES (133, p_id,1607924257)
-
-INSERT INTO players(name)
-VALUES ("Jane")
-RETURNING id AS p_id;
-
-INSERT INTO scores(score, player_id, date_created)
-VALUES (211, p_id,1607751459)
-
-INSERT INTO scores(score, player_id, date_created)
-VALUES (222, p_id,1607837857)
-
-INSERT INTO scores(score, player_id, date_created)
-VALUES (233, p_id,1607924257)
-END TRANSACTION;
+INSERT INTO players(name) VALUES ('Jane') RETURNING id;
+INSERT INTO scores(score, player_id, date_created) VALUES (211, id, 1607751459);
+INSERT INTO scores(score, player_id, date_created) VALUES (222, id, 1607837857);
+INSERT INTO scores(score, player_id, date_created) VALUES (233, id, 1607924257);
 

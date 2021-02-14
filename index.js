@@ -1,14 +1,8 @@
 const { ApolloServer } = require("apollo-server");
-const { Pool } = require("pg");
 const typeDefs = require("./schema");
+const pgClient = require("./pgclient");
 
-const pool = new Pool({
-  user: "docker",
-  host: "localhost",
-  database: "docker",
-  password: "docker",
-  port: 5432,
-});
+pgClient();
 
 const players = [
   {
