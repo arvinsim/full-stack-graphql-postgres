@@ -10,16 +10,12 @@ async function pgClient() {
   });
 
   // Test the connection
-  const tableCountResp = await pool.query(
-    "select count(*) from information_schema.tables where table_schema = $1;",
-    ["docker"]
+  const scoresResp = await pool.query(
+    "select scores.id as score_id, score, name, player_id, date_created from scores join players p on scores.player_id = p.id",
   );
   await pool.end();
 
-  console.log(
-    "Connected to PostgreSQL | Tables count:",
-    tableCountResp.rows[0].count
-  );
+  console.log(scoresResp)
 }
 
 module.exports = pgClient;
